@@ -22,7 +22,7 @@ public class Main {
                 roman_num += count_roman_digit(num.charAt(i) - '0', "C", "D" , "M");
             }
             else if (num.length() - i == 4 ) {
-                roman_num += "M";
+                roman_num = "M".repeat(num.charAt(i) - '0') ;
             }
             else return;
         }
@@ -31,19 +31,13 @@ public class Main {
     public static String count_roman_digit(int num, String first_roman_digit, String second_roman_digit, String third_roman_digit){
         String end_roman_digit = "";
         if(num < 4){
-            for(int i = 0; i < num; i++){
-                end_roman_digit += first_roman_digit;
-                /*System.out.println("0");*/
-            }
+            end_roman_digit = first_roman_digit.repeat(num);
         } else if (num == 4) {
             end_roman_digit = first_roman_digit + second_roman_digit;
         }else if(num == 5){
             end_roman_digit = second_roman_digit;
         } else if (num > 5 && num < 9) {
-            end_roman_digit = second_roman_digit;
-            for(int i = 0; i < num-5; i++){
-                end_roman_digit += first_roman_digit;
-            }
+            end_roman_digit = second_roman_digit + first_roman_digit.repeat(num - 5);
         } else if (num == 9) {
             end_roman_digit = first_roman_digit + third_roman_digit;
         }/*
